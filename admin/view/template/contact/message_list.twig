@@ -1,0 +1,89 @@
+{{ header }}
+{{ column_left }}
+
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <!-- optional buttons can go here -->
+      </div>
+      <h1>Contact Messages</h1>
+      <ul class="breadcrumb">
+        <li><a href="{{ home }}">{{ text_home }}</a></li>
+        <li><a href="#">Contact Messages</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-envelope"></i> Contact Messages</h3>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table id="contact-table" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>S.N.</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Message</th>
+      <!-- <th>Date</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    {% set sn = 1 %}
+    {% for msg in messages %}
+      <tr>
+        <td>{{ sn }}</td>
+        <td>{{ msg.name }}</td>
+        <td>{{ msg.email }}</td>
+        <td>{{ msg.phone }}</td>
+        <td>
+          {% set fields = msg.fields %}
+          {% for field in fields %}
+            {% if field.label == 'Message' %}
+              {{ field.value }}
+            {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+
+
+        <!-- <td><a href="{{ msg.url }}" target="_blank">{{ msg.url }}</a></td> -->
+        <!-- <td>{{ msg.date }}</td> -->
+      </tr>
+      {% set sn = sn + 1 %}
+    {% endfor %}
+  </tbody>
+</table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- DataTables Bootstrap 3 CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap.min.css">
+
+<!-- jQuery (OpenCart loads it already) -->
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#contact-table').DataTable({
+      "pageLength": 50,
+      "ordering": true,
+      "searching": true
+    });
+  });
+</script>
+
+
+{{ footer }}

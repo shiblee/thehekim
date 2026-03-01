@@ -1,0 +1,126 @@
+{{ header }}
+<style type="text/css">
+    .site-wrapper>.container>.row {
+        display: flow!important;
+        flex-grow: 1;
+    }
+    .main-products.product-grid .product-layout:not(.swiper-slide)
+    {
+        padding-top: 30px !important;
+    }
+    /* Default (desktop): 4 per row */
+.main-products.product-grid .product-layout:not(.swiper-slide) {
+  width: calc(100% / 4 - 0.01px)!important;
+  padding: 10px!important;
+}
+
+/* Tablet (3 per row) */
+@media (max-width: 991.98px) {
+  .main-products.product-grid .product-layout:not(.swiper-slide) {
+    width: calc(100% / 3 - 0.01px)!important;
+    padding: 6px!important;
+  }
+}
+
+/* Mobile (2 per row) */
+@media (max-width: 767.98px) {
+  .main-products.product-grid .product-layout:not(.swiper-slide) {
+    width: calc(100% / 2 - 0.01px)!important;
+    padding: 6px!important;
+  }
+  .main-products.product-grid {
+    margin: 5px!important;
+    margin-top: 10px;
+}
+
+.title {
+    font-family: 'Vollkorn';
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.1;
+    margin-bottom: 33px!important;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+    margin-left: 10px!important;
+}
+
+.site-wrapper>.container {
+    width: 100%;
+    padding: 0;
+    display: flex
+;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: -23%!important;
+}
+
+}
+
+/* Extra small (optional - 1 per row) */
+@media (max-width: 480px) {
+  .main-products.product-grid .product-layout:not(.swiper-slide) {
+    width: 100%;
+    padding: 6px!important;
+  }
+}
+.title
+ {
+    font-family: 'Vollkorn';
+    font-weight: 700;
+    /* font-size: 22px; */
+    line-height: 1.1;
+    margin-bottom: 33px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+    margin-left: 1px;
+}
+
+.site-wrapper>.container {
+    width: 100%;
+    padding: 0;
+    display: flex
+;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: -5%;
+}
+</style>
+{{ j3.loadController('journal3/layout', 'top') }}
+{% if content_top or content_bottom or column_left or column_right %}
+<div id="common-home" class="container">
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    {% if content_top or content_bottom %}
+    <div id="content" class="{{ class }}">{{ content_top }}{{ content_bottom }}</div>
+    {% endif %}
+    {{ column_right }}</div>
+</div>
+{% endif %}
+
+<div class="container" id="custom-category-products">
+  {% for category in categories %}
+    {% if category.products %}
+      <div class="j3-module module-title" style="margin: 50px 0 -35px;">
+        <h3 class="title" style="font-size: 24px;">{{ category.name }}</h3>
+      </div>
+      
+      <div class="main-products product-grid">
+        {% for product in category.products %}
+                {% include 'journal3/template/journal3/product_card_custom.twig' with { 'products': [product] } %}
+        {% endfor %}
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+{{ j3.loadController('journal3/seo/rich_snippets') }}
+{{ footer }}

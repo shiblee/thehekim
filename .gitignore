@@ -1,0 +1,21 @@
+# OpenCart Configuration Files
+config.php
+admin/config.php
+
+# Logs and Caches
+error_log
+storage/cache/
+storage/logs/
+storage/session/
+storage/vendor/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Any other local environment files
+php.ini
+
+# Ignore large user uploads
+image/
+image_new/

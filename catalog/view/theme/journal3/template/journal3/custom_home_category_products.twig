@@ -1,0 +1,23 @@
+<!-- <div class="container" id="custom-category-products">
+  {% for category in categories %}
+    {% if category.products %}
+      <div class="j3-module module-title" style="margin: 40px 0 20px;">
+        <div class="title-wrapper" style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 class="title" style="font-size: 24px;">{{ category.name }}</h3>
+          <a href="{{ category.href }}" class="see-all" style="font-size: 14px;">See All</a>
+        </div>
+      </div>
+
+      <div class="j3-module module-products" data-module="product_grid" data-config='{"itemsPerRow":{"xl":4,"lg":4,"md":3,"sm":2,"xs":1}}'>
+        <div class="products grid">
+          {% for product in category.products %}
+            <div class="product-layout">
+              {{ j3.loadController('journal3/product_card', product|merge({'module_id': 'custom_home'})) }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+ -->

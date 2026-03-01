@@ -1,0 +1,62 @@
+{{ header }}
+{{ column_left }}
+
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <h1>{{ heading_title }}</h1>
+      <div class="pull-right">
+        <a href="{{ add }}" class="btn btn-primary">Add Team Member</a>
+        <button type="submit" form="form-team" formaction="{{ delete }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <form action="{{ delete }}" method="post" enctype="multipart/form-data" id="form-team">
+      <table class="table table-bordered table-hover">
+        <thead>
+  <tr>
+    <th style="width: 1px;" class="text-center">
+      <input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" />
+    </th>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Designation</th>
+    <th>Type</th>
+    <th>LinkedIn</th>
+    <th>Twitter</th>
+    <th>Facebook</th>
+    <th>Email</th>
+    <th>Action</th>
+  </tr>
+</thead>
+<tbody>
+  {% for member in members %}
+    <tr>
+      <td class="text-center"><input type="checkbox" name="selected[]" value="{{ member.team_id }}" /></td>
+      <td>
+        {% if member.image %}
+          <img src="../image/{{ member.image }}" class="img-thumbnail" style="height: 50px;" />
+        {% endif %}
+      </td>
+      <td>{{ member.name }}</td>
+      <td>{{ member.designation }}</td>
+      <td>{{ member.type }}</td>
+      <td>{{ member.linkedin }}</td>
+      <td>{{ member.twitter }}</td>
+      <td>{{ member.facebook }}</td>
+      <td>{{ member.email }}</td>
+      <td>
+        <a href="{{ 'index.php?route=extension/module/manage_team/edit&user_token=' ~ user_token ~ '&team_id=' ~ member.team_id }}" class="btn btn-primary btn-sm">Edit</a>
+      </td>
+    </tr>
+  {% endfor %}
+</tbody>
+
+      </table>
+    </form>
+  </div>
+</div>
+
+{{ footer }}

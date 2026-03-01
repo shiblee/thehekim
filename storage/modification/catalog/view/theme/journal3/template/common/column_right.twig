@@ -1,0 +1,10 @@
+{% if modules %}
+<aside id="column-right" class="side-column">
+  {% for module in modules %}
+
+                <li class="list-group-item"><a href="index.php?route=extension/payment/razorpay/subscriptions">My Subscriptions</a></li>
+            
+  {{ module }}
+  {% endfor %}
+</aside>
+{% endif %}

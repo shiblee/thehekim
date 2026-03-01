@@ -1,0 +1,19 @@
+{
+  "general": {
+    "contentType": {
+      "type": "select",
+      "label": "Content Type",
+      "default": "description",
+      "options": {
+        "description": "Description (Auto Layout)",
+        "short_description": "Short Description",
+        "attributes": "Specifications",
+        "reviews": "Reviews",
+        "main_ingredients": "Main Ingredients",
+        "key_features": "Key Features",
+        "dosage": "Dosage",
+        "faq_description": "FAQ Description"
+      }
+    }
+  }
+}

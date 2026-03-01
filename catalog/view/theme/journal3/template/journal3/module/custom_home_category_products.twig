@@ -1,0 +1,22 @@
+<div class="home-category-product-block">
+  {% for category in categories %}
+    <div class="category-block">
+      <h3><a href="{{ category.href }}">{{ category.name }}</a></h3>
+      <div class="row">
+        {% for product in category.products %}
+          <div class="product-layout col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="product-thumb">
+              <div class="image">
+                <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a>
+              </div>
+              <div class="caption">
+                <h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+                <p class="price">{{ product.price }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
