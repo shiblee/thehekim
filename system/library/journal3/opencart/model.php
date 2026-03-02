@@ -88,7 +88,7 @@ class Model extends \Model implements Autocomplete {
 				$data[$key] = $this->escape($value);
 			}
 		} else {
-			$data = str_replace(static::$REPL['search'], static::$REPL['replace'], $data);
+			$data = str_replace(static::$REPL['search'], static::$REPL['replace'], (string)$data);
 		}
 
 		return $data;
@@ -100,7 +100,7 @@ class Model extends \Model implements Autocomplete {
 				$data[$key] = $this->unescape($value);
 			}
 		} else {
-			$data = str_replace(static::$REPL['replace'], static::$REPL['search'], $data);
+			$data = str_replace(static::$REPL['replace'], static::$REPL['search'], (string)$data);
 		}
 
 		return $data;

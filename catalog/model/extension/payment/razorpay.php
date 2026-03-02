@@ -25,7 +25,11 @@ class ModelExtensionPaymentRazorpay extends Model
     public function __construct($registry)
     {
         parent::__construct($registry);
-        $this->rzpPdo = new mPDO(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        if (defined('DB_PORT')) {
+            $this->rzpPdo = new mPDO(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT);
+        } else {
+            $this->rzpPdo = new mPDO(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        }
     }
 
     public function getMethod($address, $total)
