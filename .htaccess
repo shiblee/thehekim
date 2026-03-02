@@ -15,7 +15,7 @@ Options +SymLinksIfOwnerMatch
 RewriteEngine On
 # If your opencart installation does not run on the main web folder make sure you folder it does run in ie. / becomes /shop/
 
-RewriteBase /
+RewriteBase /thehekim/
 
 RewriteRule ^sitemap.xml$ index.php?route=extension/feed/google_sitemap [L]
 RewriteRule ^googlebase.xml$ index.php?route=extension/feed/google_base [L]

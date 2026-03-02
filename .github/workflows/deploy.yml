@@ -22,7 +22,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # Exclude configuration files, huge media folders, and git artifacts
           exclude: |
             **/.git*
             **/.git*/**
@@ -39,3 +38,4 @@ jobs:
             php.ini
             **/*.sql
             **/*.php.bak
+            .htaccess
