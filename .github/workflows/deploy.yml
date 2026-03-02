@@ -1,0 +1,41 @@
+name: Deploy to GoDaddy FTP
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Exclude configuration files, huge media folders, and git artifacts
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            config.php
+            admin/config.php
+            image/**
+            image_new/**
+            storage/cache/**
+            storage/logs/**
+            storage/session/**
+            .DS_Store
+            Thumbs.db
+            php.ini
+            **/*.sql
+            **/*.php.bak
