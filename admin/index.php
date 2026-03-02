@@ -15,8 +15,14 @@ if (is_file('config.php')) {
 
 // Install
 if (!defined('DIR_APPLICATION')) {
-	header('Location: ../install/index.php');
-	exit;
+	if (is_dir('../install')) {
+		header('Location: ../install/index.php');
+		exit;
+	}
+	else {
+		echo 'The admin/config.php file is missing or invalid. Please restore admin/config.php if the site is already installed.';
+		exit;
+	}
 }
 
 // Startup

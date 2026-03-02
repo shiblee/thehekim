@@ -9,8 +9,14 @@ if (is_file('config.php')) {
 
 // Install
 if (!defined('DIR_APPLICATION')) {
-	header('Location: install/index.php');
-	exit;
+	if (is_dir('install')) {
+		header('Location: install/index.php');
+		exit;
+	}
+	else {
+		echo 'The config.php file is missing or invalid, and the install directory is not accessible. Please restore config.php if the site is already installed.';
+		exit;
+	}
 }
 
 // Startup
