@@ -7,7 +7,6 @@ error_log
 storage/cache/
 storage/logs/
 storage/session/
-storage/vendor/
 
 # Operating System Files
 .DS_Store
