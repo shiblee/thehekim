@@ -1,41 +1,31 @@
-name: Deploy to GoDaddy FTP
+name: Deploy to Live Server
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   web-deploy:
-    name: 🎉 Deploy
+    name: Deploy to FTP Server
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
+      - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
       
-      - name: 📂 Sync files
+      - name: Sync Files to Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./
+          server-dir: ./
           exclude: |
             **/.git*
             **/.git*/**
             .github/**
-            config.php
-            admin/config.php
-            image/**
-            image_new/**
-            storage/cache/**
-            storage/logs/**
-            storage/session/**
-            .DS_Store
-            Thumbs.db
-            php.ini
-            **/*.sql
-            **/*.php.bak
-            .htaccess
+            node_modules/**
+            vendor/**
